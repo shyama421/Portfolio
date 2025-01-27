@@ -1,74 +1,39 @@
-function Web() {
+import { projects } from "../../utils/data.constants";
 
-    const projects = [
-        {
-            id: 1,
-            img: <img src="/images/web1.png"><a href="https://construction-website-gamma-ruby.vercel.app/"></a></img>,
-            name: "Furniture Website",
-            lang: "HTML,SCSS,Bootstrap",
-            technologies: {
-                1: "Responsive",
-                2: "Advanced CSS",
-                3: "Animation",
-                4: "Framework"
-            },
-        },
-        {
-            id: 2,
-            img: <img src="/images/web2.png"></img>,
-            name: "Hacker Login Page",
-            lang: "HTML,SCSS",
-            technologies: {
-                1: "Responsive",
-                2: "Advanced CSS",
-                3: "Animation"
-            },
-        },
-        {
-            id: 3,
-            img: <img src="/images/web3.png"></img>,
-            name: "Online Food Order",
-            lang: "HTML,CSS,Advanced CSS",
-            technologies: {
-                1: "Responsive",
-                2: "Advanced CSS",
-                3: "Animation",
-            },
-        },
-        {
-            id: 4,
-            img: <img src="/images/web4.png"></img>,
-            name: "Calculator",
-            lang: "HTML,CSS,JavaScript",
-            technologies: {
-                1: "Functionality",
-                2: "Responsive",
-                3: "Calculation"
-            },
-        }
-
-    ]
-
-    return (
-        <>
-            <div className="grid grid-cols-3 gap-x-5 gap-y-5 pt-6">
-                <a href="https://construction-website-gamma-ruby.vercel.app/">
-                    <div className="flex flex-col justify-start">
-                        {
-                            projects.map((project) =>
-                                <div key={project?.id}>
-                                    <div className="flex flex-col justify-start items-start p-5">
-                                        <div className="flex">{project?.img}</div>
-                                        <h1 className="text-xl font-bold">{project?.name}</h1>
-                                    </div>
-                                </div>
-                            )
-                        }
+const Web = () => (
+    <div className="flex flex-col justify-center w-[100%]">
+        <div className="grid grid-cols-3 gap-x-8 gap-y-8 pt-6 max-sm:grid-cols-1 ">
+            {projects.map((project) => (
+                <a
+                    key={project?.id}
+                    href={project?.link || "#"}
+                >
+                    <div className="flex flex-col justify-start items-start p-5 bg-zinc-200 shadow-lg rounded-2xl transition-all hover:scale-105 animate__animated animate__zoomIn max-sm:justify-center">
+                        <img
+                            src={project.img}
+                            alt={project?.name}
+                            className="rounded-lg w-full h-48 object-cover"
+                        />
+                        <h1 className="text-xl font-bold mt-3 group-hover:text-blue-600 text-sky-700">
+                            {project.name}
+                        </h1>
+                        <p className="text-gray-600 mt-1 text-sm">{project.lang}</p>
+                        <ul className="mt-2 text-sm text-gray-500">
+                            {
+                                project.technologies.map((tech, index) => (
+                                    <li key={index} className="list-disc ml-4 text-sky-800">
+                                        {tech}
+                                    </li>
+                                ))
+                            }
+                        </ul>
                     </div>
                 </a>
-            </div>
-        </>
+            ))
+            }
+        </div>
+    </div>
 
-    )
-}
-export default Web
+)
+
+export default Web;

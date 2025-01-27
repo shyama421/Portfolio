@@ -1,31 +1,15 @@
-// import { useState } from "react"
 
 import { useState } from "react"
 import Graphics from "../component/work/graphics"
 import Web from "../component/work/web"
+import { design } from "../utils/data.constants"
 
 function Work() {
-    // const [isGraphicsOpen, setisGraphicsOpen] = useState(false);
-    const [activeTab, setActiveTab] = useState("graphicDesign")
-
-    const design = [
-        {
-            id: 1,
-            name: "Graphics Design",
-            path: "/graphics",
-            tabName: "graphicDesign"
-        },
-        {
-            id: 2,
-            name: "Web Design",
-            path: "/web",
-            tabName: "webDesign"
-        }
-    ]
+    const [activeTab, setActiveTab] = useState("webDesign")
 
     return (
         <>
-            <div className="flex flex-col justify-center items-start p-20 max-lg:p-12 max-sm:p-6 max-sm:pt-14">
+            <div className="flex flex-col justify-center items-start p-20 max-lg:p-20 max-sm:pt-14 max-sm:justify-center max-sm:p-10">
                 <h1 className="text-gray-500 text-xs uppercase pb-4 animate__animated animate__fadeInUp">
                     My Work
                 </h1>
@@ -33,12 +17,12 @@ function Work() {
                     Recent Work
                 </h2>
 
-                <div className="flex gap-10">
+                <div className="flex gap-10 max-sm:gap-3" >
                     {
                         design.map((design) =>
                             <div key={design?.id}>
                                 <button onClick={() => { setActiveTab(design.tabName) }}>
-                                    <h1 className="animate__animated animate__fadeInUp uppercase Quicksand_Book font-bold active:text-sky-600 active:underline">
+                                    <h1 className="animate__animated animate__fadeInUp uppercase Quicksand_Book font-bold text-sky-700 active:text-sky-600 active:underline max-sm:text-nowrap">
                                         {design?.name}
                                     </h1>
                                 </button>
@@ -47,7 +31,7 @@ function Work() {
                     }
                 </div>
                 {
-                    activeTab === "graphicDesign" ? <Graphics /> : <Web />
+                    activeTab === "webDesign" ? <Web /> : <Graphics />
                 }
 
 

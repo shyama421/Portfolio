@@ -7,16 +7,16 @@ const degrees = [
     {
         id: 1,
         degree: "Full Stack Development Course",
-        institution: "Institution : At Creative Insight IT Academy",
+        institution: "Institution : Creative Insight IT Academy",
         content: "With a strong foundation in both front-end and back-end technologies. I specialize in building responsive, user-friendly Website while ensuring scalable and efficient backend systems.",
-        year: "Year : 2024",
+        year: "Passing Year : 2024",
     },
     {
         id: 2,
         degree: "Bachelor of Technology in Computer Science",
-        institution: "Institution : At Saurashtra University",
+        institution: "Institution : Saurashtra University",
         content: "Comprehensive understanding of computer science fundamentals, programming, and software development",
-        year: "Year : 2022",
+        year: "Passing Year : 2025",
     },
     {
         id: 3,
@@ -24,26 +24,26 @@ const degrees = [
         institution: "Institution : Dholakiya School",
         stream: "Stream : Commarce",
         content: "Awarded Certificate for Drama in National Leval.",
-        year: "Year : 2021",
+        year: "Passing Year : 2022",
     },
     {
         id: 4,
         degree: "Secondary School Education",
         institution: "Institution : Dholakiya School",
         content: "Awarded Certificate for Dance in State Level. Collaborated with educational institutions to improve SSC-focused curriculum delivery.",
-        year: "Year : 2019",
+        year: "Passing Year : 2020",
     },
 ];
 
 function Education() {
-    const [openedId, setOpenedId] = useState(null);
+    const [openedId, setOpenedId] = useState(degrees[0].id);
 
     const toggle = (id) => {
-        setOpenedId((prev) => (prev === id ? null : id));
+        setOpenedId((prev) => (prev === id ? degrees[0].id : id));
     };
 
     return (
-        <div className="flex flex-col justify-center items-start p-20 max-lg:p-12 max-sm:p-6 h-[100vh] max-sm:items-center max-sm:h-[70vh]">
+        <div className="flex flex-col  items-start p-20 max-lg:p-12 max-sm:p-6 h-[100vh] max-sm:items-center max-sm:h-[70vh]">
             <h1 className="text-gray-500 text-xs uppercase pb-4 animate__animated animate__fadeInUp max-sm:p-1">
                 Education
             </h1>
@@ -53,7 +53,7 @@ function Education() {
 
             <div className="flex flex-col w-[100%] justify-start items-start gap-4 max-sm:justify-center max-sm:items-center">
                 {degrees.map((degree) => (
-                    <div key={degree.id} className='w-[50vw] max-sm:w-[64vw] flex flex-col p-2 border bg-zinc-200 border-slate-300 active:bg-gray-300 animate__animated animate__zoomIn '>
+                    <div key={degree.id} className='w-[50vw] max-sm:w-[100%] flex flex-col p-2 border bg-zinc-200 border-slate-300 active:bg-gray-300 animate__animated animate__zoomIn '>
                         <Box>
                             <Group className='flex Quicksand_Book font-bold'>
                                 <div className='flex justify-between items-center w-[100%] text-[15px] uppercase text-sky-700 Quicksand_Book max-sm:text-[12px] '>{degree?.degree}

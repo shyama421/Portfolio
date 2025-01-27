@@ -1,31 +1,24 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faClose } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-
 
 function Sidebar({ children, pages }) {
     const [isMenuOpen, setIsMenuOpen] = useState(window.screen.width > 640 ? true : false);
 
-
-
     return (
         <>
             <div className="flex">
-                <button type='button' onClick={() => setIsMenuOpen(!isMenuOpen)} className='sm:hidden max-sm:absolute z-10'>
-                    <FontAwesomeIcon icon={faBars} className="m-4 text-xl cursor-pointer" />
+                <button type='button' onClick={() => setIsMenuOpen(!isMenuOpen)} className='sm:hidden max-sm:fixed z-[10000]'>
+                    {
+                        <FontAwesomeIcon icon={isMenuOpen ? faClose : faBars} className="m-4 text-xl cursor-pointer" />
+                    }
                 </button>
                 {
                     isMenuOpen && (
                         <div>
-                            <button type='button' onClick={() => setIsMenuOpen(!isMenuOpen)} className='sm:hidden max-sm:ms-20 animate__fadeOutLeft'>
-                                <FontAwesomeIcon icon={faCircleXmark} className="m-4 text-xl cursor-pointer" />
-                            </button>
-
-
-                            <div className="bg-zinc-100 h-full w-60 max-sm:w-32 max-lg:w-40 max-sm:text-nowrap flex flex-col items-center animate__animated animate__fadeInLeft max-sm:p-6 z-10 pt-20">
-
+                            <div className="bg-zinc-100 fixed h-full w-60 max-sm:w-[100%] max-lg:w-40 max-sm:text-nowrap flex flex-col items-center animate__animated animate__fadeInLeft max-sm:p-20 z-10 pt-20 max-sm:fixed max-sm:justify-center">
                                 <img
                                     src="/images/1.webp"
                                     alt="User Profile"
@@ -39,11 +32,11 @@ function Sidebar({ children, pages }) {
                                     ) : (
                                         pages.map((data) => (
                                             <div key={data.id} className="flex flex-col justify-center items-center">
-                                                <Link to={data.path}>
+                                                <NavLink to={data.path} onClick={() => setIsMenuOpen(window.screen.width > 640 ? true : false)} >
                                                     <h2 className="mt-5 text-xs hover:underline underline-offset-4 text-gray-600 font-semibold active:text-sky-600">
                                                         {data.page}
                                                     </h2>
-                                                </Link>
+                                                </NavLink>
                                             </div>
                                         ))
                                     )}
@@ -53,9 +46,10 @@ function Sidebar({ children, pages }) {
                     )
                 }
 
+                <div className="flex-1 justify-center items-center h-screen max-sm:justify-center max-sm:relative w-[100%] sm:ps-56">{children}</div>
 
-                <div className="flex-1 justify-center items-center h-[100vh] max-sm:justify-center">{children}</div>
-            </div>
+            </div >
+
         </>
     );
 }
